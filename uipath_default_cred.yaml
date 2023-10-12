@@ -1,0 +1,23 @@
+id: uipath-default-credential
+
+info:
+  name: Uipath Orchestrator default credential vulns
+  author: dungvit85
+  severity: high
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/identity/'   
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "UiPath"
+        part: body
+        condition: or
+
+      - type: status
+        status:
+          - 200

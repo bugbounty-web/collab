@@ -1,0 +1,23 @@
+id: optimizely-insite-dom-xss
+
+info:
+  name: optimizely insite dom xss vulns
+  author: dungvit85
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/admin/signin'   
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "isc_admin_api"
+        part: body
+        condition: or
+
+      - type: status
+        status:
+          - 200
